@@ -1,29 +1,43 @@
-# StatLocker Product Overview
+# StatLocker — Product Overview
 
-StatLocker is a mobile app for high school and club athletes to track performance stats and receive AI-powered insights. Built by former Division 1 athletes, it transforms raw athletic data into personalized performance dashboards.
+## Policy (North Star)
 
-## Core Value Proposition
-"Stat tracking made easy. Progress made visible."
+- Roles: **Athlete** and **Coach** only. **No Parent accounts.**
+- Parents: May view using the athlete’s login at the family’s discretion.
+- Specs live here: `/specs/<feature>/{requirements.md, design.md, tasks.md}`
+- Source of truth doc: `/docs/overview.md`
 
-## Target Users
-- **Primary**: High school & club athletes (ages 13-18), starting with lacrosse
-- **Secondary**: Coaches (mobile app, future web dashboards)
-- **Future**: Club directors, recruiters, organizations
+**Tagline:** Stat tracking made easy. Progress made visible.
 
-## Key Features
-- **AthleteDNA™**: Adaptive player profiles that learn performance trends
-- **AI Coach**: Personalized feedback in multiple tones (Hype, Mentor, Analyst, Captain)
-- **StatGraph AI™**: Auto-generated performance trends and comparisons
-- **GoalPace AI™**: Progress tracking toward season goals
-- **Skills Library**: Position-based drill recommendations
-- **Recruiting Tools**: Guided recruiting process with target school tracking
-- **Team Messaging**: Context-aware chat between athletes and coaches
+## What it is
+StatLocker turns raw game stats into a beautiful, actionable performance dashboard for high school and club athletes—starting with lacrosse.
 
-## Monetization
-- Free 7-day trial
-- Pro tier: $9.99/month (full tracking + AI insights)
-- Elite tier: $19.99/month (unlimited AI summaries, advanced analytics)
-- Coach/Team plans: Custom pricing
+## Who it’s for
+- **Primary:** Athletes (13–18) in high school & club teams  
+- **Secondary:** Coaches (mobile first, web/team dashboards later)  
+- **No Parent Accounts:** Parents do not register. If needed, they may view using the athlete’s own account at the family’s discretion.
 
-## Brand Tone
-Confident, supportive, progress-driven. Elite energy with emotional storytelling - "Nike x Whoop x Strava" aesthetic.
+## Core Value
+- **Effortless logging** with position-specific stats + auto-calculated percentages  
+- **AI insights** (tone: Hype, Mentor, Analyst, Captain) that explain trends and next steps  
+- **Goals that stick** via GoalPace status (on-track / at-risk / stretch) and badges  
+- **Clear trends** (StatGraph AI) and shareable season snapshots
+
+## MVP Scope
+1) **Onboarding** (role lock: Athlete or Coach; sport/gender; position; HS/Club; choose 3 goals; tone; review → auth)  
+2) **Dashboard** (Hero, Stat Cards, AI Insight preview, Goals progress, Recent Games, FAB “Log Game”)  
+3) **Log Game** (position fields with +/-; % derived on submit)  
+4) **Stats** (trends, filters, comparisons; AI after 3 games)  
+5) **Goals** (GoalPace + badges)
+
+## Tech (baseline)
+React Native + Expo (TypeScript, Expo Router) • NativeWind • Zustand • RHF + Zod • Firebase (Auth/Firestore/Storage) • RevenueCat • expo-notifications • Reanimated
+
+## Pricing
+- **7-day free trial**  
+- **Pro** $9.99/mo — full tracking + AI insights  
+- **Elite** $19.99/mo — adds advanced analytics & unlimited AI summaries  
+- **Coach/Team/Org** — later phases
+
+## Source of Truth
+- Full plan & rationale: **`/docs/overview.md`**

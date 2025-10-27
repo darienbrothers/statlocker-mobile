@@ -1,0 +1,111 @@
+{
+  "expo": {
+    "name": "StatLocker",
+    "slug": "statlocker-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0047AB"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.statlocker.mobile",
+      "buildNumber": "1",
+      "infoPlist": {
+        "UIBackgroundModes": ["background-fetch"],
+        "NSCameraUsageDescription": "StatLocker uses the camera to capture game photos and videos for your performance tracking.",
+        "NSPhotoLibraryUsageDescription": "StatLocker accesses your photo library to save and share your game highlights and statistics.",
+        "NSMicrophoneUsageDescription": "StatLocker uses the microphone to record game audio and voice notes for your performance analysis."
+      },
+      "associatedDomains": [
+        "applinks:statlocker.app",
+        "applinks:*.statlocker.app"
+      ],
+      "config": {
+        "usesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0047AB"
+      },
+      "package": "com.statlocker.mobile",
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.VIBRATE"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "statlocker.app"
+            },
+            {
+              "scheme": "https",
+              "host": "*.statlocker.app"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "scheme": "statlocker",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "your-eas-project-id"
+      }
+    },
+    "owner": "statlocker-team",
+    "privacy": "public",
+    "description": "StatLocker - Stat tracking made easy. Progress made visible. Track your athletic performance, set goals, and unlock your potential with comprehensive sports analytics.",
+    "githubUrl": "https://github.com/statlocker/statlocker-mobile",
+    "primaryColor": "#0047AB",
+    "backgroundColor": "#FFFFFF",
+    "notification": {
+      "icon": "./assets/notification-icon.png",
+      "color": "#0047AB",
+      "androidMode": "default",
+      "androidCollapsedTitle": "StatLocker"
+    },
+    "updates": {
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 5000,
+      "url": "https://u.expo.dev/your-project-id"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "jsEngine": "hermes"
+  }
+}
