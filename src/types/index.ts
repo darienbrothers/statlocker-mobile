@@ -1,49 +1,42 @@
-// Core app types for StatLocker
-import React from 'react';
+/**
+ * Types Index
+ * 
+ * Central export point for all type definitions
+ */
 
-export interface User {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  role: 'athlete' | 'coach';
-  createdAt: string;
-  updatedAt: string;
-}
+// Authentication types
+export * from './auth';
 
-export interface AppState {
-  auth: {
-    user: User | null;
-    isLoading: boolean;
-    isAuthenticated: boolean;
-  };
-  navigation: {
-    activeTab: TabName;
-    previousRoute: string;
-  };
-  ui: {
-    isKeyboardVisible: boolean;
-    isOffline: boolean;
-  };
-}
+// Security types  
+export * from './security';
 
-export type TabName = 'dashboard' | 'stats' | 'goals' | 'recruiting';
+// Re-export commonly used types for convenience
+export type {
+  User,
+  AuthError,
+  AuthErrorCode,
+  AuthState,
+  AuthProvider,
+  AuthProviderId,
+  UserCredential,
+  FirebaseUser,
+  SecurityEvent,
+  SecurityEventType,
+  DeviceInfo,
+  UserSession,
+  RateLimitConfig,
+  RateLimitState,
+  IAuthService,
+  IAuthStore,
+} from './auth';
 
-export interface ScreenProps {
-  children: React.ReactNode;
-  title?: string;
-  scroll?: boolean;
-  stickyCta?: React.ReactNode;
-  gradientUnderCta?: boolean;
-  testID?: string;
-  className?: string;
-}
-
-export interface StickyCTAProps {
-  variant: 'primary' | 'secondary' | 'fab';
-  onPress: () => void;
-  disabled?: boolean;
-  loading?: boolean;
-  children: React.ReactNode;
-  testID?: string;
-}
+export type {
+  SecurityAlert,
+  SecurityAlertType,
+  RiskLevel,
+  SecurityMetrics,
+  AnomalyDetection,
+  DeviceFingerprint,
+  GeolocationInfo,
+  SecurityConfig,
+} from './security';

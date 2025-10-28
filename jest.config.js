@@ -3,7 +3,7 @@ module.exports = {
   preset: 'react-native',
   
   // Test environment
-  testEnvironment: 'jsdom',
+  testEnvironment: 'react-native',
   
   // Setup files
   setupFilesAfterEnv: [
@@ -12,7 +12,7 @@ module.exports = {
   ],
   
   // Module name mapping for path aliases
-  moduleNameMapping: {
+  moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   
@@ -101,8 +101,8 @@ module.exports = {
   // Coverage directory
   coverageDirectory: '<rootDir>/coverage',
   
-  // Mock configuration
-  moduleNameMapping: {
+  // Mock configuration for CSS and other assets
+  moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
@@ -137,15 +137,20 @@ module.exports = {
   // Notify mode (for watch mode)
   notify: false,
   
-  // Watch plugins
-  watchPlugins: [
-    'jest-watch-typeahead/filename',
-    'jest-watch-typeahead/testname',
-  ],
+  // Watch plugins (commented out since they're not installed)
+  // watchPlugins: [
+  //   'jest-watch-typeahead/filename',
+  //   'jest-watch-typeahead/testname',
+  // ],
   
   // Custom test environment options
   testEnvironmentOptions: {
     url: 'http://localhost',
+  },
+
+  // Global variables
+  globals: {
+    __DEV__: true,
   },
   
   // Max workers for parallel execution

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "265273560451",
+    "project_id": "statlocker-staging",
+    "storage_bucket": "statlocker-staging.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265273560451:android:9f978e29aac7ed9642fab6",
+        "android_client_info": {
+          "package_name": "com.statlocker.mobile.staging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "265273560451-7vid587igcl207rk89sitkef6s0qv4mt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.statlocker.mobile.staging",
+            "certificate_hash": "4d8e44aeb91fb85ca8dcb3845036cc6251784c0d"
+          }
+        },
+        {
+          "client_id": "265273560451-6fle44jolqv59b7ar45ngto3ta98av2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9sszAyNxYQVvev9jhgMVM27dSnrF_oDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "265273560451-6fle44jolqv59b7ar45ngto3ta98av2e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "265273560451-q4tkftqc52r9qq94jt4j1on7at12jgfv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.statlocker.mobile.staging"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

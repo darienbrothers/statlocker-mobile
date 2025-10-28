@@ -32,6 +32,9 @@ export { Skeleton, type SkeletonProps, SkeletonCard, SkeletonStatCard } from './
 export { Icon, type IconName, type IconSize, type IconColor } from './Icon';
 export { TabIcon, type TabIconName } from './TabIcon';
 
+// Authentication Components
+export * from './auth';
+
 // Re-export as default exports for convenience
 export { default as ScreenComponent } from './Screen';
 export { default as StickyCTAComponent } from './StickyCTA';

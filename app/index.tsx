@@ -13,6 +13,7 @@ import React, { useEffect } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useAuthStore } from '@/store/authStore';
+import { authService } from '@/services/AuthService';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { useTranslation } from '@/hooks/useTranslation';
 
@@ -26,8 +27,13 @@ export default function AuthGateScreen() {
     // Track app launch
     trackEvent('app_launched');
     
-    // Initialize auth state on app launch
-    initialize();
+    // Initialize auth services and state on app launch
+    const initializeApp = async () => {
+      await authService.initialize();
+      initialize();
+    };
+    
+    initializeApp();
   }, [initialize, trackEvent]);
 
   useEffect(() => {

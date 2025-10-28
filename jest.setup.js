@@ -172,6 +172,9 @@ global.console = {
   error: jest.fn(),
 };
 
+// Define __DEV__ global for React Native
+global.__DEV__ = true;
+
 // Mock timers for consistent testing
 jest.useFakeTimers();
 

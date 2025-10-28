@@ -4,10 +4,10 @@
     "slug": "statlocker-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/appicon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/textLogoWhite.png",
       "resizeMode": "contain",
       "backgroundColor": "#0047AB"
     },
@@ -19,7 +19,9 @@
       "bundleIdentifier": "com.statlocker.mobile",
       "buildNumber": "1",
       "infoPlist": {
-        "UIBackgroundModes": ["background-fetch"],
+        "UIBackgroundModes": [
+          "background-fetch"
+        ],
         "NSCameraUsageDescription": "StatLocker uses the camera to capture game photos and videos for your performance tracking.",
         "NSPhotoLibraryUsageDescription": "StatLocker accesses your photo library to save and share your game highlights and statistics.",
         "NSMicrophoneUsageDescription": "StatLocker uses the microphone to record game audio and voice notes for your performance analysis."
@@ -62,16 +64,31 @@
               "host": "*.statlocker.app"
             }
           ],
-          "category": ["BROWSABLE", "DEFAULT"]
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
         }
       ]
     },
     "web": {
-      "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-auth-session",
+        {
+          "schemes": ["statlocker"]
+        }
+      ],
+      [
+        "expo-apple-authentication",
+        {
+          "appleTeamId": "5433B64Y9K"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

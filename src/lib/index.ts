@@ -112,5 +112,29 @@ export {
   HapticType,
 } from './haptics';
 
+export {
+  initializeFirebase,
+  getFirebaseApp,
+  getFirebaseAuth,
+  getFirebaseFirestore,
+  getFirebaseConfigForEnv,
+} from './firebase';
+
+export {
+  validateEmail,
+  assessPasswordStrength,
+  validatePasswordConfirmation,
+  validateSignUpForm,
+  validateSignInForm,
+  validatePasswordResetForm,
+  DEFAULT_PASSWORD_RULES,
+  type FormValidationResult,
+} from './validation';
+
+export {
+  sessionManager,
+  SessionManager,
+} from './sessionManager';
+
 // Future utilities can be added here
 // export { utilityFunction } from './utilities';
