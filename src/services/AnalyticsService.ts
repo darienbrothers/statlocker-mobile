@@ -409,7 +409,6 @@ export class AnalyticsService {
       platform: 'mobile', // Could be determined dynamically
       appVersion: '1.0.0', // Should come from app config
       route: 'unknown', // Could be determined from navigation
-      timestamp: new Date().toISOString(),
     };
   }
 
