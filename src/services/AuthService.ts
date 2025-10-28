@@ -36,6 +36,7 @@ import { reauthenticationService } from './ReauthenticationService';
 import { sessionManagementService } from './SessionManagementService';
 import { consentManagementService } from './ConsentManagementService';
 import { parentalConsentService } from './ParentalConsentService';
+import { accountDeletionService } from './AccountDeletionService';
 import {
   AuthErrorCode,
   AuthError,

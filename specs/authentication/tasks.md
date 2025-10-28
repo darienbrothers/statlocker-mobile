@@ -151,7 +151,7 @@
     - Handle account activation pending parental consent
     - _Requirements: 14.2, 14.4, 14.5_
 
-  - [ ] 9.3 Implement account deletion and data export
+  - [x] 9.3 Implement account deletion and data export
     - Create account deletion flow with re-authentication
     - Add data export functionality (JSON format)
     - Implement async data purge job integration

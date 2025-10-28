@@ -61,4 +61,5 @@ export { default as SLAgeVerificationForm } from './SLAgeVerificationForm';
 export { default as SLParentalConsentFlow } from './SLParentalConsentFlow';
 export { default as SLEnhancedSignUpFlow } from './SLEnhancedSignUpFlow';
 export { default as SLReauthModal } from './SLReauthModal';
-export { default as SLAccountLinkingModal } from './SLAccountLinkingModal';
+export { default as SLAccountLinkingModal } from './SLAccountLinkingModal';expo
+rt { default as SLAccountDeletionFlow } from './SLAccountDeletionFlow';

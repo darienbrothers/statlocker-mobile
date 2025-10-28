@@ -34,4 +34,10 @@ export type {
   ParentalConsentRequest, 
   ParentalConsentResponse, 
   PendingAccount 
-} from './ParentalConsentService';
+} from './ParentalConsentService';export { 
+accountDeletionService } from './AccountDeletionService';
+export type { 
+  DeletionRequest, 
+  DeletionProgress, 
+  DataExport 
+} from './AccountDeletionService';
