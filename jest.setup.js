@@ -4,6 +4,12 @@
  * Global test setup and mocks for the StatLocker mobile app
  */
 
+// Define React Native globals BEFORE any imports
+global.__DEV__ = true;
+global.__BUNDLE_START_TIME__ = Date.now();
+global.__filename = '';
+global.__dirname = '';
+
 import 'react-native-gesture-handler/jestSetup';
 
 // Mock react-native modules
@@ -172,8 +178,16 @@ global.console = {
   error: jest.fn(),
 };
 
-// Define __DEV__ global for React Native
-global.__DEV__ = true;
+// Mock console methods to avoid noise in tests
+const originalConsole = global.console;
+global.console = {
+  ...originalConsole,
+  log: jest.fn(),
+  debug: jest.fn(),
+  info: jest.fn(),
+  warn: jest.fn(),
+  error: jest.fn(),
+};
 
 // Mock timers for consistent testing
 jest.useFakeTimers();

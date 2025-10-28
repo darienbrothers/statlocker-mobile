@@ -1,14 +1,28 @@
-import { View, Text } from 'react-native';
+import { useEffect } from 'react'
+import { router } from 'expo-router'
+import { useOnboardingStore } from '../../../src/stores/onboardingStore'
 
-export default function OnboardingScreen() {
-  return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-2xl font-semibold text-primary-900">
-        StatLocker Onboarding
-      </Text>
-      <Text className="text-base text-gray-500 mt-2">
-        Onboarding flow placeholder
-      </Text>
-    </View>
-  );
+/**
+ * Onboarding entry point - determines where to start based on existing progress
+ */
+export default function OnboardingIndex() {
+  const { currentStep, hasExistingProgress, loadProgress } = useOnboardingStore()
+
+  useEffect(() => {
+    const initializeOnboarding = async () => {
+      // Load any existing progress from storage
+      await loadProgress()
+      
+      // Determine starting step based on progress
+      const startStep = hasExistingProgress ? currentStep : 1
+      
+      // Navigate to the appropriate step
+      router.replace(`/onboarding/${startStep}`)
+    }
+
+    initializeOnboarding()
+  }, [])
+
+  // Show loading while determining where to start
+  return null
 }

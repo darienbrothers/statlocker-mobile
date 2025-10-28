@@ -114,26 +114,26 @@ export class MonitoringService {
         ? dbHealth.value 
         : this.createFailedHealthCheck('database', dbHealth.reason);
 
-      const networkHealth = networkHealth.status === 'fulfilled' 
+      const networkServiceHealth = networkHealth.status === 'fulfilled' 
         ? networkHealth.value 
         : this.createFailedHealthCheck('network', networkHealth.reason);
 
       // Store health checks
       this.healthChecks.set('auth_service', authServiceHealth);
       this.healthChecks.set('database', databaseHealth);
-      this.healthChecks.set('network', networkHealth);
+      this.healthChecks.set('network', networkServiceHealth);
 
       // Determine overall health
       const overallHealth = this.calculateOverallHealth([
         authServiceHealth,
         databaseHealth,
-        networkHealth,
+        networkServiceHealth,
       ]);
 
       const metrics: SystemMetrics = {
         authServiceHealth,
         databaseHealth,
-        networkHealth,
+        networkHealth: networkServiceHealth,
         overallHealth,
         uptime: Date.now() - startTime,
         lastChecked: new Date(),

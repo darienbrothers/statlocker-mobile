@@ -172,7 +172,7 @@ export class ConsentManagementService {
         throw new Error(`Document type ${request.documentType} not found`);
       }
 
-      const consentRecord: ConsentRecord = {\
+      const consentRecord: ConsentRecord = {
         documentType: request.documentType,
         version: document.version,
         consentGiven: request.consentGiven,

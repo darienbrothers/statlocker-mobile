@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import NetInfo from '@react-native-netinfo/lib/commonjs'
+import NetInfo from '@react-native-community/netinfo'
 import { OnboardingProgress } from '@/types/onboarding'
 
 const OFFLINE_QUEUE_KEY = 'onboarding_offline_queue'

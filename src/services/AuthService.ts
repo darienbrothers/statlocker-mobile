@@ -873,11 +873,8 @@ export class AuthService implements IAuthService {
       this.unsubscribeAuthState = undefined;
     }
   }
-}
 
-// Export singleton instance
-export const authService = new AuthService();  /*
-*
+  /**
    * Re-authenticate user with credential
    */
   async reauthenticate(credential: any): Promise<void> {
@@ -898,3 +895,6 @@ export const authService = new AuthService();  /*
     }
   }
 }
+
+// Export singleton instance
+export const authService = new AuthService();

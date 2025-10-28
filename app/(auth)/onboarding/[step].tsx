@@ -1,106 +1,106 @@
-import { Text, View, Pressable } from 'react-native';
-import { useRouter, useLocalSearchParams } from 'expo-router';
-import { Screen, StickyCTA } from '@/components';
+import { useLocalSearchParams, router } from 'expo-router'
+import { useEffect, useState } from 'react'
+import { View, Text } from 'react-native'
+import { useOnboardingStore } from '../../../src/stores/onboardingStore'
+import { StepWrapper } from '../../../src/components/onboarding/StepWrapper'
 
-const onboardingSteps = {
-  profile: {
-    title: 'Create Your Profile',
-    description: 'Tell us about yourself and your sport',
-    content: 'Profile setup form would go here',
-    nextStep: 'goals',
-  },
-  goals: {
-    title: 'Set Your Goals',
-    description: 'What do you want to achieve this season?',
-    content: 'Goal setting interface would go here',
-    nextStep: 'notifications',
-  },
-  notifications: {
-    title: 'Stay Updated',
-    description: 'Get notified about your progress and achievements',
-    content: 'Notification preferences would go here',
-    nextStep: null, // Last step
-  },
-};
+// Import actual step components
+import { RoleSelection } from '../../../src/components/onboarding/steps/RoleSelection'
+import { SportGender } from '../../../src/components/onboarding/steps/SportGender'
+import { PositionLevel } from '../../../src/components/onboarding/steps/PositionLevel'
+import { TeamDetails } from '../../../src/components/onboarding/steps/TeamDetails'
+import { GoalSelection } from '../../../src/components/onboarding/steps/GoalSelection'
+import { AthleteDNA } from '../../../src/components/onboarding/steps/AthleteDNA'
+import { TonePreference } from '../../../src/components/onboarding/steps/TonePreference'
+import { AgeVerification } from '../../../src/components/onboarding/steps/AgeVerification'
+import { LegalConsent } from '../../../src/components/onboarding/steps/LegalConsent'
+import { ReviewProfile } from '../../../src/components/onboarding/steps/ReviewProfile'
+import { AccountCreation } from '../../../src/components/onboarding/steps/AccountCreation'
 
-export default function OnboardingStepScreen() {
-  const router = useRouter();
-  const { step } = useLocalSearchParams<{ step: string }>();
+const stepComponents = {
+  1: RoleSelection,
+  2: SportGender,
+  3: PositionLevel,
+  4: TeamDetails,
+  5: GoalSelection,
+  6: AthleteDNA,
+  7: TonePreference,
+  8: AgeVerification,
+  9: LegalConsent,
+  10: ReviewProfile,
+  11: AccountCreation,
+}
+
+/**
+ * Dynamic step router for onboarding flow
+ */
+export default function OnboardingStep() {
+  const { step } = useLocalSearchParams<{ step: string }>()
+  const stepNumber = parseInt(step || '1', 10)
   
-  const currentStep = step && onboardingSteps[step as keyof typeof onboardingSteps];
+  const { 
+    currentStep, 
+    totalSteps, 
+    setStep, 
+    canNavigateToStep,
+    navigateNext,
+    navigateBack
+  } = useOnboardingStore()
 
-  if (!currentStep) {
-    // Invalid step, redirect to onboarding start
-    router.replace('/(auth)/onboarding');
-    return null;
-  }
+  const [isValidStep, setIsValidStep] = useState(false)
+
+  useEffect(() => {
+    // Validate step number and navigation permissions
+    if (stepNumber >= 1 && stepNumber <= totalSteps && canNavigateToStep(stepNumber)) {
+      setStep(stepNumber)
+      setIsValidStep(true)
+    } else {
+      // Redirect to valid step if invalid step requested
+      router.replace(`/onboarding/${currentStep}`)
+    }
+  }, [stepNumber, currentStep, totalSteps])
 
   const handleNext = () => {
-    if (currentStep.nextStep) {
-      router.push(`/(auth)/onboarding/${currentStep.nextStep}`);
-    } else {
-      // Last step, complete onboarding
-      handleCompleteOnboarding();
+    if (stepNumber < totalSteps) {
+      navigateNext()
+      router.push(`/onboarding/${stepNumber + 1}`)
     }
-  };
+  }
 
-  const handleCompleteOnboarding = () => {
-    // TODO: Save onboarding completion state
-    console.log('Onboarding completed');
-    // Handle any pending deep links after onboarding
-    const { deepLinkService } = require('@/services/DeepLinkService');
-    deepLinkService.handleAuthSuccess();
-  };
+  const handleBack = () => {
+    if (stepNumber > 1) {
+      navigateBack()
+      router.back()
+    }
+  }
 
-  const handleSkip = () => {
-    router.replace('/(tabs)/dashboard');
-  };
+  if (!isValidStep) {
+    return (
+      <View className="flex-1 bg-gray-900 justify-center items-center">
+        <Text className="text-white">Loading...</Text>
+      </View>
+    )
+  }
 
-  const isLastStep = !currentStep.nextStep;
+  const StepComponent = stepComponents[stepNumber as keyof typeof stepComponents]
+
+  if (!StepComponent) {
+    return (
+      <View className="flex-1 bg-gray-900 justify-center items-center">
+        <Text className="text-white">Step not found</Text>
+      </View>
+    )
+  }
 
   return (
-    <Screen
-      title={currentStep.title}
-      stickyCta={
-        <StickyCTA variant="primary" onPress={handleNext}>
-          {isLastStep ? 'Complete Setup' : 'Continue'}
-        </StickyCTA>
-      }
+    <StepWrapper
+      stepNumber={stepNumber}
+      title={`Step ${stepNumber}`}
+      onNext={handleNext}
+      onBack={handleBack}
+      nextDisabled={false} // Will be controlled by step validation
     >
-      <View className="flex-1">
-        <Text className="text-base text-gray-500 mb-8">
-          {currentStep.description}
-        </Text>
-
-        {/* Placeholder content */}
-        <View className="bg-gray-100 rounded-2xl p-6 mb-8">
-          <Text className="text-gray-700 text-center">
-            {currentStep.content}
-          </Text>
-        </View>
-
-        {/* Progress indicator */}
-        <View className="flex-row justify-center space-x-2 mb-8">
-          {Object.keys(onboardingSteps).map((stepKey, index) => (
-            <View
-              key={stepKey}
-              className={`w-2 h-2 rounded-full ${
-                stepKey === step ? 'bg-primary-900' : 'bg-gray-200'
-              }`}
-            />
-          ))}
-        </View>
-
-        {/* Skip button */}
-        <Pressable
-          className="self-center px-6 py-3 bg-gray-100 rounded-xl"
-          onPress={handleSkip}
-        >
-          <Text className="text-gray-700 font-medium">
-            Skip for now
-          </Text>
-        </Pressable>
-      </View>
-    </Screen>
-  );
+      <StepComponent />
+    </StepWrapper>
+  )
 }

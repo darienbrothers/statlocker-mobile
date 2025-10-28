@@ -8,6 +8,7 @@ import {
   Alert
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import { useOnboardingTheme } from './OnboardingThemeProvider'
 import { ConflictResolution } from '@/types/onboarding'
 
 interface ConflictResolutionModalProps {
@@ -25,6 +26,7 @@ export const ConflictResolutionModal: React.FC<ConflictResolutionModalProps> = (
   onCancel,
   isResolving = false
 }) => {
+  const { tokens } = useOnboardingTheme()
   const [selectedResolution, setSelectedResolution] = useState<'local' | 'remote' | 'merge' | null>(null)
 
   if (!conflict) return null

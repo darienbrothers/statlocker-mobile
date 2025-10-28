@@ -20,8 +20,9 @@ export type {
   User,
   UserCredential,
   FirebaseUser,
-} from '@/types/auth';//
- Consent and Compliance Services
+} from '@/types/auth';
+
+// Consent and Compliance Services
 export { consentManagementService } from './ConsentManagementService';
 export { parentalConsentService } from './ParentalConsentService';
 export type { 
@@ -34,14 +35,16 @@ export type {
   ParentalConsentRequest, 
   ParentalConsentResponse, 
   PendingAccount 
-} from './ParentalConsentService';export { 
-accountDeletionService } from './AccountDeletionService';
+} from './ParentalConsentService';
+
+export { accountDeletionService } from './AccountDeletionService';
 export type { 
   DeletionRequest, 
   DeletionProgress, 
   DataExport 
-} from './AccountDeletionService';/
-/ Navigation and Error Handling Services
+} from './AccountDeletionService';
+
+// Navigation and Error Handling Services
 export { deepLinkService } from './DeepLinkService';
 export { navigationService } from './NavigationService';
 export { errorHandlingService } from './ErrorHandlingService';
@@ -58,5 +61,20 @@ export type {
   ErrorRecoveryAction, 
   ProcessedError, 
   ErrorContext 
-} from './ErrorHandlingService';expor
-t { authMonitoringService } from './AuthMonitoringService';\nexport type { \n  AuthFlowMetrics, \n  AuthPerformanceReport, \n  AuthSecurityReport, \n  AuthHealthStatus \n} from './AuthMonitoringService';
+} from './ErrorHandlingService';
+
+export { authMonitoringService } from './AuthMonitoringService';
+export type { 
+  AuthFlowMetrics, 
+  AuthPerformanceReport, 
+  AuthSecurityReport, 
+  AuthHealthStatus 
+} from './AuthMonitoringService';
+
+// Guardian Consent Service
+export { GuardianConsentService } from './GuardianConsentService';
+export type {
+  GuardianConsentRequest,
+  GuardianConsentResponse,
+  ConsentPortalData
+} from './GuardianConsentService';

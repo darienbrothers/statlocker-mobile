@@ -1,11 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import NetInfo from '@react-native-netinfo/lib/commonjs'
+import NetInfo from '@react-native-community/netinfo'
 import { OnboardingOfflineQueue, addProgressToOfflineQueue, getOfflineQueueStatus } from '@/lib/onboarding/offlineQueue'
 import { OnboardingProgress } from '@/types/onboarding'
 
 // Mock dependencies
 jest.mock('@react-native-async-storage/async-storage')
-jest.mock('@react-native-netinfo/lib/commonjs')
+jest.mock('@react-native-community/netinfo')
 
 const mockAsyncStorage = AsyncStorage as jest.Mocked<typeof AsyncStorage>
 const mockNetInfo = NetInfo as jest.Mocked<typeof NetInfo>

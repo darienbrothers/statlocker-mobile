@@ -52,19 +52,19 @@ export type {
 // Security Components
 // export { 
 //   SLRateLimitBanner, 
-//   useRateLimitCountdown 
-// } from './SLRateLimitBanner';
-// export type { SLRateLimitBannerProps } from './SLRateLimitBanner';// Advan
-ced Authentication Components
+// Advanced Authentication Components
 export { default as SLConsentForm } from './SLConsentForm';
 export { default as SLAgeVerificationForm } from './SLAgeVerificationForm';
 export { default as SLParentalConsentFlow } from './SLParentalConsentFlow';
 export { default as SLEnhancedSignUpFlow } from './SLEnhancedSignUpFlow';
 export { default as SLReauthModal } from './SLReauthModal';
-export { default as SLAccountLinkingModal } from './SLAccountLinkingModal';expo
-rt { default as SLAccountDeletionFlow } from './SLAccountDeletionFlow';// N
-avigation and Error Handling Components
+export { default as SLAccountLinkingModal } from './SLAccountLinkingModal';
+export { default as SLAccountDeletionFlow } from './SLAccountDeletionFlow';
+
+// Navigation and Error Handling Components
 export { default as AuthGuard, withAuthGuard, useAuthGuard } from './AuthGuard';
 export { default as AuthProvider, ProtectedRoute, PublicRoute } from './AuthProvider';
-export { default as ErrorBoundary, withErrorBoundary, useErrorHandler } from './ErrorBoundary';//
- Monitoring Components\nexport { default as SLAuthMonitoringDashboard } from './SLAuthMonitoringDashboard';
+export { default as ErrorBoundary, withErrorBoundary, useErrorHandler } from './ErrorBoundary';
+
+// Monitoring Components
+export { default as SLAuthMonitoringDashboard } from './SLAuthMonitoringDashboard';

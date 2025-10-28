@@ -6,6 +6,7 @@ module.exports = {
   testEnvironment: 'react-native',
   
   // Setup files
+  setupFiles: ['<rootDir>/jest.globals.js'],
   setupFilesAfterEnv: [
     '@testing-library/jest-native/extend-expect',
     '<rootDir>/jest.setup.js'
@@ -151,6 +152,9 @@ module.exports = {
   // Global variables
   globals: {
     __DEV__: true,
+    __BUNDLE_START_TIME__: 0,
+    __filename: '',
+    __dirname: '',
   },
   
   // Max workers for parallel execution
