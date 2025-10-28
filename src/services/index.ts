@@ -58,4 +58,5 @@ export type {
   ErrorRecoveryAction, 
   ProcessedError, 
   ErrorContext 
-} from './ErrorHandlingService';
+} from './ErrorHandlingService';expor
+t { authMonitoringService } from './AuthMonitoringService';\nexport type { \n  AuthFlowMetrics, \n  AuthPerformanceReport, \n  AuthSecurityReport, \n  AuthHealthStatus \n} from './AuthMonitoringService';

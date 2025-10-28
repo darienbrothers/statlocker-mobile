@@ -66,4 +66,5 @@ rt { default as SLAccountDeletionFlow } from './SLAccountDeletionFlow';// N
 avigation and Error Handling Components
 export { default as AuthGuard, withAuthGuard, useAuthGuard } from './AuthGuard';
 export { default as AuthProvider, ProtectedRoute, PublicRoute } from './AuthProvider';
-export { default as ErrorBoundary, withErrorBoundary, useErrorHandler } from './ErrorBoundary';
+export { default as ErrorBoundary, withErrorBoundary, useErrorHandler } from './ErrorBoundary';//
+ Monitoring Components\nexport { default as SLAuthMonitoringDashboard } from './SLAuthMonitoringDashboard';
