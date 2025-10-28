@@ -62,4 +62,8 @@ export { default as SLParentalConsentFlow } from './SLParentalConsentFlow';
 export { default as SLEnhancedSignUpFlow } from './SLEnhancedSignUpFlow';
 export { default as SLReauthModal } from './SLReauthModal';
 export { default as SLAccountLinkingModal } from './SLAccountLinkingModal';expo
-rt { default as SLAccountDeletionFlow } from './SLAccountDeletionFlow';
+rt { default as SLAccountDeletionFlow } from './SLAccountDeletionFlow';// N
+avigation and Error Handling Components
+export { default as AuthGuard, withAuthGuard, useAuthGuard } from './AuthGuard';
+export { default as AuthProvider, ProtectedRoute, PublicRoute } from './AuthProvider';
+export { default as ErrorBoundary, withErrorBoundary, useErrorHandler } from './ErrorBoundary';

@@ -40,4 +40,22 @@ export type {
   DeletionRequest, 
   DeletionProgress, 
   DataExport 
-} from './AccountDeletionService';
+} from './AccountDeletionService';/
+/ Navigation and Error Handling Services
+export { deepLinkService } from './DeepLinkService';
+export { navigationService } from './NavigationService';
+export { errorHandlingService } from './ErrorHandlingService';
+export type { 
+  DeepLinkHandler, 
+  DeepLinkContext 
+} from './DeepLinkService';
+export type { 
+  NavigationState, 
+  AuthNavigationOptions 
+} from './NavigationService';
+export type { 
+  ErrorMapping, 
+  ErrorRecoveryAction, 
+  ProcessedError, 
+  ErrorContext 
+} from './ErrorHandlingService';
