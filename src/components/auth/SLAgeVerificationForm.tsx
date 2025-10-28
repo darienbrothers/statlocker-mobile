@@ -24,7 +24,7 @@ export function SLAgeVerificationForm({
   onCancel,
   testID,
 }: SLAgeVerificationFormProps) {
-  const { toast, showError, showSuccess, hideToast } = useToast();
+  const { toast, showError, hideToast } = useToast();
   
   // Form state
   const [isLoading, setIsLoading] = useState(false);
@@ -128,63 +128,75 @@ export function SLAgeVerificationForm({
   };
 
   return (
-    <View className=\"flex-1 bg-white\" testID={testID}>
-      <ScrollView className=\"flex-1\" showsVerticalScrollIndicator={false}>
-        <View className=\"p-6\">
-          <View className=\"items-center mb-6\">
-            <View className=\"w-16 h-16 bg-green-100 rounded-full items-center justify-center mb-4\">
-              <Calendar size={32} color=\"#059669\" />
+    <View style={{ flex: 1, backgroundColor: 'white' }} testID={testID}>
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+        <View style={{ padding: 24 }}>
+          {/* Header */}
+          <View style={{ alignItems: 'center', marginBottom: 24 }}>
+            <View style={{ 
+              width: 64, 
+              height: 64, 
+              backgroundColor: '#D1FAE5', 
+              borderRadius: 32, 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              marginBottom: 16 
+            }}>
+              <Calendar size={32} color="#059669" />
             </View>
-            <Text className=\"text-xl font-semibold text-gray-900 mb-2\">
+            <Text style={{ fontSize: 20, fontWeight: '600', color: '#111827', marginBottom: 8 }}>
               Age Verification
             </Text>
-            <Text className=\"text-gray-600 text-center\">
+            <Text style={{ color: '#6B7280', textAlign: 'center' }}>
               We need to verify your age to comply with privacy laws
             </Text>
           </View>
 
-          <View className=\"mb-6\">
+          {/* Date of Birth Input */}
+          <View style={{ marginBottom: 24 }}>
             <SLTextField
-              label=\"Date of Birth\"
+              label="Date of Birth"
               value={dateOfBirth}
               onChangeText={handleDateChange}
               error={errors.dateOfBirth}
-              placeholder=\"MM/DD/YYYY\"
-              keyboardType=\"numeric\"
+              placeholder="MM/DD/YYYY"
+              keyboardType="numeric"
               maxLength={10}
-              leftIcon={<Calendar size={20} color=\"#6B7280\" />}
+              leftIcon={<Calendar size={20} color="#6B7280" />}
               required
-              testID=\"date-of-birth-input\"
+              testID="date-of-birth-input"
             />
           </View>
 
+          {/* Age Verification Result */}
           {verificationData && (
-            <View className=\"mb-6\">
-              <View className={`border rounded-lg p-4 ${
-                verificationData.requiresParentalConsent 
-                  ? 'border-yellow-200 bg-yellow-50' 
-                  : 'border-green-200 bg-green-50'
-              }`}>
-                <View className=\"flex-row items-center mb-2\">
+            <View style={{ marginBottom: 24 }}>
+              <View style={{
+                borderWidth: 1,
+                borderRadius: 8,
+                padding: 16,
+                borderColor: verificationData.requiresParentalConsent ? '#FDE68A' : '#BBF7D0',
+                backgroundColor: verificationData.requiresParentalConsent ? '#FFFBEB' : '#F0FDF4',
+              }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
                   {verificationData.requiresParentalConsent ? (
-                    <AlertTriangle size={20} color=\"#D97706\" />
+                    <AlertTriangle size={20} color="#D97706" />
                   ) : (
-                    <Shield size={20} color=\"#059669\" />
+                    <Shield size={20} color="#059669" />
                   )}
-                  <Text className={`font-medium ml-2 ${
-                    verificationData.requiresParentalConsent 
-                      ? 'text-yellow-800' 
-                      : 'text-green-800'
-                  }`}>
+                  <Text style={{
+                    fontWeight: '500',
+                    marginLeft: 8,
+                    color: verificationData.requiresParentalConsent ? '#92400E' : '#065F46',
+                  }}>
                     Age: {verificationData.age} years old
                   </Text>
                 </View>
                 
-                <Text className={`text-sm ${
-                  verificationData.requiresParentalConsent 
-                    ? 'text-yellow-700' 
-                    : 'text-green-700'
-                }`}>
+                <Text style={{
+                  fontSize: 14,
+                  color: verificationData.requiresParentalConsent ? '#B45309' : '#047857',
+                }}>
                   {verificationData.requiresParentalConsent
                     ? `Parental consent is required for users under ${verificationData.minimumAge} years old.`
                     : 'You meet the age requirements and can proceed with registration.'}
@@ -193,15 +205,16 @@ export function SLAgeVerificationForm({
             </View>
           )}
 
-          <View className=\"space-y-3\">
+          {/* Action Buttons */}
+          <View style={{ gap: 12 }}>
             <SLButton
-              variant=\"primary\"
+              variant="primary"
               onPress={handleSubmit}
               loading={isLoading}
               disabled={!verificationData || isLoading}
-              loadingText=\"Verifying...\"
+              loadingText="Verifying..."
               fullWidth
-              testID=\"verify-age-button\"
+              testID="verify-age-button"
             >
               {verificationData?.requiresParentalConsent 
                 ? 'Continue with Parental Consent' 
@@ -210,11 +223,11 @@ export function SLAgeVerificationForm({
             
             {onCancel && (
               <SLButton
-                variant=\"secondary\"
+                variant="secondary"
                 onPress={onCancel}
                 disabled={isLoading}
                 fullWidth
-                testID=\"cancel-age-verification-button\"
+                testID="cancel-age-verification-button"
               >
                 Cancel
               </SLButton>
@@ -223,12 +236,13 @@ export function SLAgeVerificationForm({
         </View>
       </ScrollView>
 
+      {/* Toast */}
       <SLToast
         visible={toast.visible}
         message={toast.message}
         type={toast.type}
         onDismiss={hideToast}
-        testID=\"age-verification-toast\"
+        testID="age-verification-toast"
       />
     </View>
   );

@@ -874,4 +874,25 @@ export class AuthService implements IAuthService {
 }
 
 // Export singleton instance
-export const authService = new AuthService();
+export const authService = new AuthService();  /*
+*
+   * Re-authenticate user with credential
+   */
+  async reauthenticate(credential: any): Promise<void> {
+    const currentUser = this.getCurrentUser();
+    if (!currentUser) {
+      throw new Error('No authenticated user');
+    }
+
+    // This would typically use reauthenticateWithCredential from Firebase
+    // For now, we'll delegate to the reauthentication service
+    const result = await reauthenticationService.reauthenticateWithCredential(
+      this.auth.currentUser!,
+      credential
+    );
+
+    if (!result.success && result.error) {
+      throw result.error;
+    }
+  }
+}

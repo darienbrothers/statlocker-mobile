@@ -6,16 +6,11 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Linking } from 'react-native';
-import { CheckSquare, Square, FileText, Shield, Info } from 'lucide-react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { CheckSquare, Square, FileText, Shield } from 'lucide-react-native';
 import { SLButton, SLToast, useToast } from '@/components/auth';
 import { consentManagementService, LegalDocument, ConsentRequest } from '@/services/ConsentManagementService';
 import { useAuthStore } from '@/store/authStore';
-import { and } from 'firebase/firestore';
-import { and } from 'firebase/firestore';
-import { and } from 'firebase/firestore';
-import { and } from 'firebase/firestore';
-import { and } from 'firebase/firestore';
 
 export interface SLConsentFormProps {
   region?: string;
@@ -135,31 +130,39 @@ export function SLConsentForm({
 
   if (documents.length === 0) {
     return (
-      <View className=\"flex-1 items-center justify-center p-6\" testID={testID}>
-        <Text className=\"text-gray-500\">Loading legal documents...</Text>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }} testID={testID}>
+        <Text style={{ color: '#6B7280' }}>Loading legal documents...</Text>
       </View>
     );
   }
 
   return (
-    <View className=\"flex-1 bg-white\" testID={testID}>
-      <ScrollView className=\"flex-1\" showsVerticalScrollIndicator={false}>
-        <View className=\"p-6\">
+    <View style={{ flex: 1, backgroundColor: 'white' }} testID={testID}>
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+        <View style={{ padding: 24 }}>
           {/* Header */}
-          <View className=\"items-center mb-6\">
-            <View className=\"w-16 h-16 bg-blue-100 rounded-full items-center justify-center mb-4\">
-              <Shield size={32} color=\"#2563EB\" />
+          <View style={{ alignItems: 'center', marginBottom: 24 }}>
+            <View style={{ 
+              width: 64, 
+              height: 64, 
+              backgroundColor: '#DBEAFE', 
+              borderRadius: 32, 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              marginBottom: 16 
+            }}>
+              <Shield size={32} color="#2563EB" />
             </View>
-            <Text className=\"text-xl font-semibold text-gray-900 mb-2\">
+            <Text style={{ fontSize: 20, fontWeight: '600', color: '#111827', marginBottom: 8 }}>
               Legal Agreements
             </Text>
-            <Text className=\"text-gray-600 text-center\">
+            <Text style={{ color: '#6B7280', textAlign: 'center' }}>
               Please review and accept the following legal documents to continue
             </Text>
           </View>
 
           {/* Consent Items */}
-          <View className=\"space-y-4 mb-6\">
+          <View style={{ marginBottom: 24 }}>
             {documents.map((document) => {
               const consentData = consents[document.type];
               if (!consentData) return null;
@@ -167,18 +170,23 @@ export function SLConsentForm({
               return (
                 <View
                   key={document.type}
-                  className={`border rounded-lg p-4 ${
-                    consentData.required ? 'border-blue-200 bg-blue-50' : 'border-gray-200 bg-gray-50'
-                  }`}
+                  style={{
+                    borderWidth: 1,
+                    borderRadius: 8,
+                    padding: 16,
+                    marginBottom: 16,
+                    borderColor: consentData.required ? '#BFDBFE' : '#D1D5DB',
+                    backgroundColor: consentData.required ? '#EFF6FF' : '#F9FAFB',
+                  }}
                 >
                   {/* Document Header */}
-                  <View className=\"flex-row items-center mb-3\">
-                    <FileText size={20} color=\"#6B7280\" />
-                    <View className=\"flex-1 ml-3\">
-                      <Text className=\"font-medium text-gray-900\">
+                  <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
+                    <FileText size={20} color="#6B7280" />
+                    <View style={{ flex: 1, marginLeft: 12 }}>
+                      <Text style={{ fontWeight: '500', color: '#111827' }}>
                         {document.title}
                         {consentData.required && (
-                          <Text className=\"text-red-500\"> *</Text>
+                          <Text style={{ color: '#EF4444' }}> *</Text>
                         )}
                       </Text>
                     </View>
@@ -187,20 +195,20 @@ export function SLConsentForm({
                   {/* Consent Checkbox */}
                   <TouchableOpacity
                     onPress={() => handleConsentChange(document.type, !consentData.consented)}
-                    className=\"flex-row items-center\"
-                    accessibilityRole=\"checkbox\"
+                    style={{ flexDirection: 'row', alignItems: 'center' }}
+                    accessibilityRole="checkbox"
                     accessibilityState={{ checked: consentData.consented }}
                     testID={`consent-${document.type}-checkbox`}
                   >
                     {consentData.consented ? (
-                      <CheckSquare size={24} color=\"#2563EB\" />
+                      <CheckSquare size={24} color="#2563EB" />
                     ) : (
-                      <Square size={24} color=\"#6B7280\" />
+                      <Square size={24} color="#6B7280" />
                     )}
-                    <Text className=\"ml-3 flex-1 text-gray-900\">
+                    <Text style={{ marginLeft: 12, flex: 1, color: '#111827' }}>
                       I have read and agree to the {document.title}
                       {consentData.required && (
-                        <Text className=\"text-red-500\"> (Required)</Text>
+                        <Text style={{ color: '#EF4444' }}> (Required)</Text>
                       )}
                     </Text>
                   </TouchableOpacity>
@@ -210,26 +218,26 @@ export function SLConsentForm({
           </View>
 
           {/* Action Buttons */}
-          <View className=\"space-y-3\">
+          <View style={{ gap: 12 }}>
             <SLButton
-              variant=\"primary\"
+              variant="primary"
               onPress={handleSubmit}
               loading={isLoading}
               disabled={!canProceed || isLoading}
-              loadingText=\"Saving preferences...\"
+              loadingText="Saving preferences..."
               fullWidth
-              testID=\"submit-consent-button\"
+              testID="submit-consent-button"
             >
               Continue
             </SLButton>
             
             {onCancel && (
               <SLButton
-                variant=\"secondary\"
+                variant="secondary"
                 onPress={onCancel}
                 disabled={isLoading}
                 fullWidth
-                testID=\"cancel-consent-button\"
+                testID="cancel-consent-button"
               >
                 Cancel
               </SLButton>
@@ -244,7 +252,7 @@ export function SLConsentForm({
         message={toast.message}
         type={toast.type}
         onDismiss={hideToast}
-        testID=\"consent-form-toast\"
+        testID="consent-form-toast"
       />
     </View>
   );
