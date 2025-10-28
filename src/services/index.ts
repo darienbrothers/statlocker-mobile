@@ -20,4 +20,18 @@ export type {
   User,
   UserCredential,
   FirebaseUser,
-} from '@/types/auth';
+} from '@/types/auth';//
+ Consent and Compliance Services
+export { consentManagementService } from './ConsentManagementService';
+export { parentalConsentService } from './ParentalConsentService';
+export type { 
+  ConsentRecord, 
+  LegalDocument, 
+  ConsentRequest, 
+  AgeVerificationData 
+} from './ConsentManagementService';
+export type { 
+  ParentalConsentRequest, 
+  ParentalConsentResponse, 
+  PendingAccount 
+} from './ParentalConsentService';

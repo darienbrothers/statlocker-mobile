@@ -54,4 +54,11 @@ export type {
 //   SLRateLimitBanner, 
 //   useRateLimitCountdown 
 // } from './SLRateLimitBanner';
-// export type { SLRateLimitBannerProps } from './SLRateLimitBanner';
+// export type { SLRateLimitBannerProps } from './SLRateLimitBanner';// Advan
+ced Authentication Components
+export { default as SLConsentForm } from './SLConsentForm';
+export { default as SLAgeVerificationForm } from './SLAgeVerificationForm';
+export { default as SLParentalConsentFlow } from './SLParentalConsentFlow';
+export { default as SLEnhancedSignUpFlow } from './SLEnhancedSignUpFlow';
+export { default as SLReauthModal } from './SLReauthModal';
+export { default as SLAccountLinkingModal } from './SLAccountLinkingModal';

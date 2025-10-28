@@ -144,7 +144,7 @@
     - Store consent data with timestamps in user profile
     - _Requirements: 14.1, 14.3_
 
-  - [ ] 9.2 Add age verification and parental consent
+  - [x] 9.2 Add age verification and parental consent
     - Create age verification flow during registration
     - Implement parental consent requirements for minors
     - Add region-specific age gate logic (COPPA, GDPR-K)

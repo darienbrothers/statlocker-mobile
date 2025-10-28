@@ -35,6 +35,7 @@ import { accountLinkingService } from './AccountLinkingService';
 import { reauthenticationService } from './ReauthenticationService';
 import { sessionManagementService } from './SessionManagementService';
 import { consentManagementService } from './ConsentManagementService';
+import { parentalConsentService } from './ParentalConsentService';
 import {
   AuthErrorCode,
   AuthError,
